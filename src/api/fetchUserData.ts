@@ -1,14 +1,12 @@
-import { UserData } from "../types/User";
+import { UserData } from "../types/types";
 import { GET_USER_DATA } from "./queries";
-
-
 
 const fetchUserData = async (): Promise<UserData> => {
   const response = await fetch(import.meta.env.VITE_GRAPHQL_ENDPOINT, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${import.meta.env.VITE_AUTH_TOKEN}`,
+      Authorization: `${import.meta.env.VITE_AUTH_TOKEN}`,
     },
     body: JSON.stringify({
       query: GET_USER_DATA.loc?.source.body,

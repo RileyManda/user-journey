@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import fetchUserData from "../api/fetchUserData";
-import { UserData } from "../types/User";
+import { UserData } from "../types/types";
 
 const ApplicationPage = () => {
   const [loading, setLoading] = useState(true);

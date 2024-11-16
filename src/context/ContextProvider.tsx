@@ -1,42 +1,41 @@
-import { createContext, useContext, ReactNode } from "react";
-
-interface ContextProviderValue {
-  fetchGraphQL: (query: string, variables?: {}) => Promise<any>;
-}
+import { createContext, useContext, ReactNode, useState } from "react";
+import fetchUserData from "../api/fetchUserData";
+import { ContextProviderValue, UserData } from "../types/types";
 
 const Context = createContext<ContextProviderValue | null>(null);
 
-// Base fetch function for GraphQL
-const fetchGraphQL = async (query: string, variables = {}) => {
-  const response = await fetch(import.meta.env.VITE_GRAPHQL_ENDPOINT, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${import.meta.env.VITE_AUTH_TOKEN}`,
-    },
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
-  });
-
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-
-  const result = await response.json();
-
-  if (result.errors) {
-    throw new Error(result.errors[0].message);
-  }
-
-  return result.data;
-};
-
 export const ContextProvider = ({ children }: { children: ReactNode }) => {
+  const [data, setData] = useState<UserData | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const userData = await fetchUserData();
+      setData(userData);
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unknown error occurred");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <Context.Provider value={{ fetchGraphQL }}>{children}</Context.Provider>
+    <Context.Provider value={{ fetchData, data, error, loading }}>
+      {children}
+    </Context.Provider>
   );
 };
 
-export const useContextProvider = () => useContext(Context);
+export const useContextProvider = () => {
+  const context = useContext(Context);
+  if (!context) {
+    throw new Error("useContextProvider must be used within a ContextProvider");
+  }
+  return context;
+};
