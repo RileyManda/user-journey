@@ -27,7 +27,7 @@ const theme = createTheme({
     h1: {
       fontSize: "30px",
       fontWeight: "bold",
-      color: "#C42727",
+      color: "#3E3E3E",
     },
     h2: {
       fontSize: "24px",
