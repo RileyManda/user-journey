@@ -24,6 +24,7 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: "Roboto, Arial, sans-serif",
+    fontWeightBold: 700,
     h1: {
       fontSize: "30px",
       fontWeight: "bold",
@@ -55,6 +56,7 @@ const theme = createTheme({
       textTransform: "none",
     },
   },
+  shape: { borderRadius: 8 },
   spacing: 8,
   components: {
     MuiButton: {
