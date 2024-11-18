@@ -1,68 +1,10 @@
 import { Box, Typography, Checkbox } from "@mui/material";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { sections } from "../api/checklistSection";
 
 const ChecklistSection = () => {
-  const sections = [
-    {
-      title: "1. Credit Check",
-      subtitle: "Check if you qualify",
-      items: [],
-    },
-    {
-      title: "2. KYC",
-      subtitle: "Check if you qualify",
-      items: [
-        "Applicant Details",
-        "Company Details",
-        "Director Details",
-        "Banking Details",
-        "3-year Production History",
-      ],
-    },
-    {
-      title: "3. Farm Profile",
-      subtitle: "Check if you qualify",
-      items: [
-        "Farm / Company Overview",
-        "Farm Description",
-        "Machinery and equipment",
-        "3-year Production History",
-        "Production Plan 2024",
-        "Risks",
-        "Irrigation",
-        "Customers & Suppliers",
-      ],
-    },
-    {
-      title: "4. Financial Information",
-      subtitle: "Check if you qualify",
-      items: [
-        "Historical Performance",
-        "Cashflow - Revenue",
-        "Cashflow - Production",
-        "Cashflow - Operational",
-        "Assets",
-        "Liabilities",
-        "CAPEX",
-        "Funding Ask",
-      ],
-    },
-    {
-      title: "5. Uploads",
-      subtitle: "Supporting Documents",
-      items: [
-        "COR 14.3",
-        "2022 AFS",
-        "2023 AFS",
-        "2024 AFS",
-        "6 months bank statements",
-        "Directors ID's",
-        "Applicant ID",
-        "Water Rights",
-      ],
-    },
-  ];
+ 
 
   return (
     <Box
