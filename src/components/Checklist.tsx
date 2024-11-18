@@ -1,11 +1,8 @@
-import { Box, Typography, Checkbox } from "@mui/material";
-import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { Box, Typography } from "@mui/material";
 import { sections } from "../api/checklistSection";
+import ChecklistItem from "./ChecklistItem";
 
 const ChecklistSection = () => {
- 
-
   return (
     <Box
       sx={{
@@ -50,58 +47,11 @@ const ChecklistSection = () => {
           {/* Checklist Items */}
           <Box sx={{ position: "relative", flexGrow: 1 }}>
             {section.items.map((item, itemIndex) => (
-              <Box
+              <ChecklistItem
                 key={itemIndex}
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  position: "relative",
-                  marginBottom: itemIndex < section.items.length - 1 ? 3 : 0, // this Adds margin only if not the last item
-                }}
-              >
-                {/* Connecting Line */}
-                {itemIndex < section.items.length - 1 && (
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      left: 14,
-                      top: "80%",
-                      bottom: "-90%",
-                      width: "2px",
-                      backgroundColor: "#E0E0E0",
-                    }}
-                  />
-                )}
-
-                {/* Checkbox */}
-                <Checkbox
-                  icon={
-                    <RadioButtonUncheckedIcon
-                      sx={{
-                        width: 30,
-                        height: 30,
-                        color: "#4CAF50",
-                      }}
-                    />
-                  }
-                  checkedIcon={
-                    <CheckCircleIcon
-                      sx={{
-                        width: 30,
-                        height: 30,
-                        color: "#4CAF50",
-                      }}
-                    />
-                  }
-                  sx={{
-                    padding: 0,
-                    marginRight: 2,
-                  }}
-                />
-
-                {/* Item Text */}
-                <Typography sx={{ color: "#123133" }}>{item}</Typography>
-              </Box>
+                item={item}
+                isLastItem={itemIndex === section.items.length - 1}
+              />
             ))}
           </Box>
         </Box>
