@@ -1,14 +1,23 @@
-import { Button, Typography } from "@mui/material";
+import ChecklistSection from "../components/Checklist";
+import LandingPageTitle from "../components/LandingPageTitle";
+import GlobalContainer from "../components/GlobalContainer";
 
 const LandingPage = () => {
-    return (
-      <div>
-        <h1>Landing Page</h1>
-        <Button variant="contained" color="primary">
-          Start Application
-        </Button>
-        <Typography variant="h1">Welcome to the User Journey App</Typography>
-      </div>
-    );
+  const handleStartApplication = () => {
+    console.log("Start Application button clicked!");
+  };
+
+  return (
+    <GlobalContainer>
+      <LandingPageTitle
+        title="Your Application Checklist"
+        subtitle="Complete the following to submit an application"
+        buttonText="Start Application"
+        onButtonClick={handleStartApplication}
+      />
+      <ChecklistSection />
+    </GlobalContainer>
+  );
 };
+
 export default LandingPage;

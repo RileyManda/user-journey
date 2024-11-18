@@ -14,3 +14,10 @@ export interface ContextProviderValue {
   error: string | null;
   loading: boolean;
 }
+
+export type LandingPageTitleProps = {
+  title: string;
+  subtitle: string;
+  buttonText: string;
+  onButtonClick: () => void;
+};
