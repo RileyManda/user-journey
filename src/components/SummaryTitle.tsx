@@ -25,14 +25,12 @@ const SummaryPageTitle = ({
         {/* Text Section */}
         <Box>
           <Typography
-            variant="h5"
-            fontWeight="bold"
-            sx={{ color: "#123133", mb: 0.5 }}
+            variant="h1"
           >
             {title}
           </Typography>
           <Typography
-            variant="body1"
+            variant="h2"
             sx={{
               color: "#5F6F79",
               fontSize: "1rem",

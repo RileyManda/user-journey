@@ -21,16 +21,11 @@ const LandingPageTitle = ({
     >
       {/* Text Section */}
       <Box>
-        <Typography variant="h4" fontWeight="bold" sx={{ mb: 1 }}>
+        <Typography variant="h1">
           {title}
         </Typography>
         <Typography
           variant="subtitle1"
-          sx={{
-            mb: 2,
-            color: "textSecondary",
-            fontSize: { xs: "0.9rem", md: "1rem" },
-          }}
         >
           {subtitle}
         </Typography>

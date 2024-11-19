@@ -11,10 +11,9 @@ const SummaryPage = () => {
   const selectedItems = location.state?.selectedItems || {};
 
   const handleContinue = () => {
-    console.log("Continue button clicked!");
-    // Navigate to the next step or final page
-    navigate("/final-step");
+    navigate("/application", { state: { selectedItems } });
   };
+
 
   return (
     <GlobalContainer>
@@ -25,7 +24,7 @@ const SummaryPage = () => {
         onButtonClick={handleContinue}
       />
       <ChecklistSection
-        isSummary={true} // Summary mode enabled
+        isSummary={true} // Summary mode enabled to diplsay summary details
         selectedItems={selectedItems} // Pass filtered selected items
         onCheckboxChange={() => {}} // Disable checkbox interaction
       />
