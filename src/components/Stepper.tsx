@@ -1,75 +1,133 @@
 import { Box, Typography } from "@mui/material";
 
 interface StepperProps {
-  steps: { label: string }[];
+  steps: { label: string; description: string }[];
   selectedItems: { [key: string]: string[] };
+  currentStep: string;
 }
 
-const Stepper = ({ steps, selectedItems }: StepperProps) => {
+const Stepper = ({ steps, selectedItems, currentStep }: StepperProps) => {
   return (
     <Box
       sx={{
         display: "flex",
+        alignItems: "center",
         justifyContent: "space-between",
-        flex: 4,
-        gap: 2,
+        width: "100%",
+        backgroundColor: "#FFFFFF",
+        borderBottom: "1px solid #E0E0E0",
       }}
     >
-      {steps.map((step, index) => (
-        <Box
-          key={index}
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            padding: 1,
-            borderBottom:
-              step.label === "1. Credit Check" ||
-              selectedItems[step.label]?.length
-                ? "2px solid #4CAF50"
-                : "none",
-            backgroundColor:
-              step.label === "1. Credit Check" ||
-              selectedItems[step.label]?.length
-                ? "#F9F9F9"
-                : "transparent",
-            minWidth: "140px",
-          }}
-        >
-          <Typography
+      {steps.map((step, index) => {
+        const isComplete = selectedItems[step.label]?.length > 0;
+        const isInProgress = step.label === currentStep;
+        const isUpNext =
+          index === steps.length - 2 && !isComplete && !isInProgress;
+        const isLastStep =
+          index === steps.length - 1 && !isComplete && !isInProgress;
+
+        return (
+          <Box
+            key={index}
             sx={{
-              color:
-                step.label === "1. Credit Check" ||
-                selectedItems[step.label]?.length
-                  ? "#4CAF50"
-                  : "#9E9E9E",
-              fontWeight:
-                step.label === "1. Credit Check" ||
-                selectedItems[step.label]?.length
-                  ? "bold"
-                  : "normal",
-              fontSize: "0.9rem",
+              flex: 1,
+              textAlign: "center",
+              padding: "16px",
+              backgroundColor: isComplete ? "#F9F9F9" : "transparent",
+              borderBottom: isInProgress
+                ? "3px solid #000"
+                : "1px solid transparent",
             }}
           >
-            {step.label}
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: "0.8rem",
-              color:
-                step.label === "1. Credit Check" ||
-                selectedItems[step.label]?.length
-                  ? "#4CAF50"
-                  : "#9E9E9E",
-            }}
-          >
-            {step.label === "1. Credit Check" ||
-            selectedItems[step.label]?.length
-              ? "Complete"
-              : "Incomplete"}
-          </Typography>
-        </Box>
-      ))}
+            {/* Status Indicator */}
+            <Box
+              sx={{
+                marginBottom: "8px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              {isInProgress ? (
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "4px",
+                  }}
+                >
+                  {[...Array(4)].map((_, dotIndex) => (
+                    <Box
+                      key={dotIndex}
+                      sx={{
+                        width: "6px",
+                        height: "6px",
+                        borderRadius: "50%",
+                        backgroundColor: dotIndex === 0 ? "#3A7D3E" : "#D3D3D3", // Green for the first dot, grey for the rest
+                      }}
+                    />
+                  ))}
+                  <Typography
+                    sx={{
+                      fontSize: "0.8rem",
+                      color: "#3A7D3E",
+                    }}
+                  >
+                    In Progress
+                  </Typography>
+                </Box>
+              ) : isComplete ? (
+                <Typography
+                  sx={{
+                    fontSize: "0.8rem",
+                    color: "#3A7D3E",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Complete
+                </Typography>
+              ) : (
+                <Typography
+                  sx={{
+                    fontSize: "0.8rem",
+                    color: isUpNext || isLastStep ? "#000000" : "#9E9E9E",
+                  }}
+                >
+                  {isUpNext ? "Up Next" : isLastStep ? "Last Step" : ""}
+                </Typography>
+              )}
+            </Box>
+
+            {/* Step Title */}
+            <Typography
+              sx={{
+                color: isComplete || isInProgress ? "#3A7D3E" : "#9E9E9E",
+                fontWeight: isComplete || isInProgress ? "bold" : "normal",
+                fontSize: "0.9rem",
+              }}
+            >
+              {step.label}
+            </Typography>
+
+            {/* Step Description */}
+            <Typography
+              sx={{
+                fontSize: "0.8rem",
+                color: isComplete || isInProgress ? "#3A7D3E" : "#9E9E9E",
+              }}
+            >
+              {isInProgress || isComplete
+                ? step.description
+                : isUpNext
+                ? "Check if you qualify"
+                : isLastStep
+                ? "Supporting Documents"
+                : step.description}
+            </Typography>
+          </Box>
+        );
+      })}
     </Box>
   );
 };
