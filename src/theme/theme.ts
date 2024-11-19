@@ -53,7 +53,7 @@ const theme = createTheme({
     body1: {
       fontSize: "16px",
       fontWeight: "regular",
-      color: "#3A7D3E",
+      color: "#3a7d3e",
     },
     body2: {
       fontSize: "14px",
@@ -67,8 +67,12 @@ const theme = createTheme({
     },
     subtitle1: {
       fontSize: "16px",
-      fontWeight: "light",
+      fontWeight: "regular",
       textTransform: "none",
+      color: "#3e3e3e",
+    },
+    subtitle2: {
+      fontSize: "16px",
       color: "#3e3e3e",
     },
   },
