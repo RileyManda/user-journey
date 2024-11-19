@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Typography, Button } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CloseIcon from "@mui/icons-material/Close";
@@ -8,18 +8,26 @@ import { sections } from "../api/checklistSectionData"; // Import sections
 import { summaryStepsData } from "../api/summarySteps";
 import FarmForm from "../components/FarmForm";
 import Stepper from "../components/Stepper";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "../redux/store";
+import { fetchUser } from "../redux/userSlice";
 
 const ApplicationPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isFullTimeFarmer, setIsFullTimeFarmer] = useState<string | null>(null);
   const [leaseType, setLeaseType] = useState<string | null>(null);
-  // Retrieve selected items from the previous page
+  const dispatch: AppDispatch = useDispatch();
+  const { data: userData, loading, error } = useSelector((state: RootState) => state.user);
+
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, [dispatch]);
+
   const selectedItems = location.state?.selectedItems || {};
   const selectedColumn = Object.keys(selectedItems).find(
     (key) => selectedItems[key]?.length
   );
-  // Find the corresponding section to fetch its items
   const selectedSection = sections.find(
     (section) => section.title === selectedColumn
   );
@@ -31,6 +39,9 @@ const ApplicationPage = () => {
   const handleSaveExit = () => {
     navigate("/summary", { state: { selectedItems } });
   };
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <GlobalContainer>
@@ -130,7 +141,6 @@ const ApplicationPage = () => {
                     display: "flex",
                     alignItems: "center",
                     marginBottom: 2,
-
                     color:
                       selectedColumn &&
                       selectedItems[selectedColumn]?.includes(item)
@@ -144,7 +154,6 @@ const ApplicationPage = () => {
                       fontSize: 20,
                       width: "30px",
                       height: "30px",
-
                       color:
                         selectedColumn &&
                         selectedItems[selectedColumn]?.includes(item)
@@ -189,6 +198,7 @@ const ApplicationPage = () => {
               handleNextClick={handleNextClick}
               setLeaseType={setLeaseType}
               lease={leaseType}
+              farmName={userData?.farmer?.farm?.name || ""}
             />
           </Box>
         </Box>
