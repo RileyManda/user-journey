@@ -1,4 +1,4 @@
-export interface UserData {
+export interface UserDataInterface {
   name: string;
   surname: string;
   farmer: {
@@ -8,16 +8,20 @@ export interface UserData {
   };
 }
 
-export interface ContextProviderValue {
+export interface ContextProviderInterface {
   fetchData: () => Promise<void>;
-  data: UserData | null;
+  data: UserDataInterface | null;
   error: string | null;
   loading: boolean;
 }
 
-export type LandingPageTitleProps = {
+export type PageTitleInterface = {
   title: string;
   subtitle: string;
   buttonText: string;
   onButtonClick: () => void;
 };
+
+export interface ChecklistSectionInterface {
+  isSummary?: boolean;
+}

@@ -1,10 +1,9 @@
 import { Box, Checkbox, Typography } from "@mui/material";
-import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 interface ChecklistItemProps {
   item: string;
   isLastItem: boolean;
+  isSummary?: boolean;
 }
 
 const ChecklistItem = ({ item, isLastItem }: ChecklistItemProps) => {
@@ -22,12 +21,12 @@ const ChecklistItem = ({ item, isLastItem }: ChecklistItemProps) => {
         <Box
           sx={{
             position: "absolute",
-            left: 14,
-            top: 30, 
-            bottom: -30, 
+            left: 10,
+            top: 23,
+            bottom: -24,
             width: "2px",
             backgroundColor: "#E0E0E0",
-            zIndex: -1, 
+            zIndex: -1,
           }}
         />
       )}
@@ -35,20 +34,22 @@ const ChecklistItem = ({ item, isLastItem }: ChecklistItemProps) => {
       {/* Checkbox */}
       <Checkbox
         icon={
-          <RadioButtonUncheckedIcon
+          <Box
             sx={{
-              width: 30,
-              height: 30,
-              color: "#4CAF50",
+              width: 24,
+              height: 24,
+              borderRadius: "50%",
+              border: "2px solid #4CAF50",
             }}
           />
         }
         checkedIcon={
-          <CheckCircleIcon
+          <Box
             sx={{
-              width: 30,
-              height: 30,
-              color: "#4CAF50",
+              width: 24,
+              height: 24,
+              borderRadius: "50%",
+              backgroundColor: "#4CAF50",
             }}
           />
         }
