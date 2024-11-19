@@ -26,34 +26,44 @@ const theme = createTheme({
     fontFamily: "Roboto, Arial, sans-serif",
     fontWeightBold: 700,
     h1: {
-      fontSize: "30px",
+      fontSize: "24px",
       fontWeight: "bold",
       color: "#3E3E3E",
     },
     h2: {
       fontSize: "24px",
-      fontWeight: "bold",
-      color: "#3E3E3E",
+      fontWeight: "regular",
+      color: "#000",
     },
     h3: {
       fontSize: "16px",
       fontWeight: "bold",
       color: "#3E3E3E",
     },
+    h4: {
+      fontSize: "16px",
+      fontWeight: "bold",
+      color: "#000",
+    },
     body1: {
-      fontSize: "14px",
+      fontSize: "16px",
       fontWeight: "regular",
       color: "#3A7D3E",
     },
     body2: {
       fontSize: "14px",
       fontWeight: "light",
-   
     },
     button: {
       fontSize: "16px",
       fontWeight: "bold",
       textTransform: "none",
+    },
+    subtitle1: {
+      fontSize: "16px",
+      fontWeight: "light",
+      textTransform: "none",
+      color: "#3E3E3E",
     },
   },
   shape: { borderRadius: 8 },
