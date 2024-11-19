@@ -1,6 +1,6 @@
 import { styled } from "@mui/material/styles";
 import { InputBase } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -41,7 +41,7 @@ const SearchComponent = () => {
         inputProps={{ "aria-label": "search" }}
       />
       <SearchIconWrapper>
-        <SearchIcon />
+        <ArrowDropDownIcon />
       </SearchIconWrapper>
     </Search>
   );
