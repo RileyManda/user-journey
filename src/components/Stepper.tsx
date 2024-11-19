@@ -32,7 +32,7 @@ const Stepper = ({ steps, selectedItems, currentStep }: StepperProps) => {
             sx={{
               flex: 1,
               textAlign: "center",
-              padding: "16px",
+              // padding: "16px",
               backgroundColor: isComplete ? "#F9F9F9" : "transparent",
               borderBottom: isInProgress
                 ? "3px solid #000"
