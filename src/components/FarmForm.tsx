@@ -2,7 +2,6 @@ import {
   Box,
   Typography,
   TextField,
-  ToggleButton,
   ToggleButtonGroup,
   Button,
 } from "@mui/material";
@@ -63,32 +62,38 @@ const FarmForm = ({
         onChange={handleFullTimeFarmerChange}
         sx={{ marginBottom: 4 }}
       >
-        <ToggleButton
+        <Button
           value="yes"
+          onClick={() => setIsFullTimeFarmer("yes")}
           sx={{
             textTransform: "none",
             flex: 1,
-            backgroundColor: isFullTimeFarmer === "yes" ? "#4CAF50" : "#FFFFFF",
+            marginRight: 1,
+            backgroundColor: isFullTimeFarmer === "yes" ? "#3A7D3E" : "#FFFFFF",
             color: isFullTimeFarmer === "yes" ? "#FFFFFF" : "#123133",
             border: "1px solid #E0E0E0",
-            "&:hover": { backgroundColor: "#4CAF50", color: "#FFFFFF" },
+            borderRadius: "8px",
+            "&:hover": { backgroundColor: "#3A7D3E", color: "#FFFFFF" },
           }}
         >
           Yes
-        </ToggleButton>
-        <ToggleButton
+        </Button>
+        <Button
           value="no"
+          onClick={() => setIsFullTimeFarmer("no")}
           sx={{
             textTransform: "none",
             flex: 1,
-            backgroundColor: isFullTimeFarmer === "no" ? "#4CAF50" : "#FFFFFF",
+            marginLeft: 1,
+            backgroundColor: isFullTimeFarmer === "no" ? "#3A7D3E" : "#FFFFFF",
             color: isFullTimeFarmer === "no" ? "#FFFFFF" : "#123133",
             border: "1px solid #E0E0E0",
-            "&:hover": { backgroundColor: "#4CAF50", color: "#FFFFFF" },
+            borderRadius: "8px",
+            "&:hover": { backgroundColor: "#3A7D3E", color: "#FFFFFF" },
           }}
         >
           No
-        </ToggleButton>
+        </Button>
       </ToggleButtonGroup>
 
       <TextField
@@ -108,45 +113,58 @@ const FarmForm = ({
         onChange={handleFullTimeFarmerChange}
         sx={{ marginBottom: 4 }}
       >
-        <ToggleButton
+        <Button
           value="leased"
+          onClick={() => setIsFullTimeFarmer("leased")}
           sx={{
             textTransform: "none",
             flex: 1,
-            backgroundColor: isFullTimeFarmer === "yes" ? "#4CAF50" : "#FFFFFF",
-            color: isFullTimeFarmer === "yes" ? "#FFFFFF" : "#123133",
+            marginRight: 1,
+            backgroundColor:
+              isFullTimeFarmer === "leased" ? "#3A7D3E" : "#FFFFFF",
+            color: isFullTimeFarmer === "leased" ? "#FFFFFF" : "#123133",
             border: "1px solid #E0E0E0",
-            "&:hover": { backgroundColor: "#4CAF50", color: "#FFFFFF" },
+            borderRadius: "8px",
+            "&:hover": { backgroundColor: "#3A7D3E", color: "#FFFFFF" },
           }}
         >
           Leased
-        </ToggleButton>
-        <ToggleButton
+        </Button>
+        <Button
           value="owned"
+          onClick={() => setIsFullTimeFarmer("owned")}
           sx={{
             textTransform: "none",
             flex: 1,
-            backgroundColor: isFullTimeFarmer === "no" ? "#4CAF50" : "#FFFFFF",
-            color: isFullTimeFarmer === "no" ? "#FFFFFF" : "#123133",
+            marginLeft: 1,
+            marginRight: 1,
+            backgroundColor:
+              isFullTimeFarmer === "owned" ? "#3A7D3E" : "#FFFFFF",
+            color: isFullTimeFarmer === "owned" ? "#FFFFFF" : "#123133",
             border: "1px solid #E0E0E0",
-            "&:hover": { backgroundColor: "#4CAF50", color: "#FFFFFF" },
+            borderRadius: "8px",
+            "&:hover": { backgroundColor: "#3A7D3E", color: "#FFFFFF" },
           }}
         >
           Owned
-        </ToggleButton>
-        <ToggleButton
+        </Button>
+        <Button
           value="both"
+          onClick={() => setIsFullTimeFarmer("both")}
           sx={{
             textTransform: "none",
             flex: 1,
-            backgroundColor: isFullTimeFarmer === "no" ? "#4CAF50" : "#FFFFFF",
-            color: isFullTimeFarmer === "no" ? "#FFFFFF" : "#4CAF50",
+            marginLeft: 1,
+            backgroundColor:
+              isFullTimeFarmer === "both" ? "#3A7D3E" : "#FFFFFF",
+            color: isFullTimeFarmer === "both" ? "#FFFFFF" : "#123133",
             border: "1px solid #E0E0E0",
-            "&:hover": { backgroundColor: "#4CAF50", color: "#FFFFFF" },
+            borderRadius: "8px",
+            "&:hover": { backgroundColor: "#3A7D3E", color: "#FFFFFF" },
           }}
         >
           Both
-        </ToggleButton>
+        </Button>
       </ToggleButtonGroup>
       <Typography variant="subtitle1" sx={{ marginBottom: 2 }}>
         Leasing Information
@@ -175,8 +193,8 @@ const FarmForm = ({
         sx={{
           marginTop: 4,
           textTransform: "none",
-          backgroundColor: "#4CAF50",
-          "&:hover": { backgroundColor: "#388E3C" },
+          backgroundColor: "#3A7D3E",
+          "&:hover": { backgroundColor: "#2E6732" },
         }}
         onClick={handleNextClick}
       >

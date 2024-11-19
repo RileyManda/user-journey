@@ -108,7 +108,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           "& fieldset": {
-            borderColor: "#3A7D3E", // Border color
+            borderColor: "#707070", // Border color
           },
           "&:hover fieldset": {
             borderColor: "#3A7D3E", // Hover border color
