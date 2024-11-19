@@ -1,38 +1,28 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Typography,
-  TextField,
-  Button,
-  ToggleButton,
-  ToggleButtonGroup,
-} from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import GlobalContainer from "../components/GlobalContainer";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
+import { sections } from "../api/checklistSectionData"; // Import sections
 import { summaryStepsData } from "../api/summarySteps";
+import FarmForm from "../components/FarmForm";
 
 const ApplicationPage = () => {
-  const [isFullTimeFarmer, setIsFullTimeFarmer] = useState<string | null>(null);
-  const [farmOwnership, setFarmOwnership] = useState<string | null>(null);
   const navigate = useNavigate();
-
-  const handleFullTimeFarmerChange = (
-    event: React.MouseEvent<HTMLElement>,
-    newValue: string | null
-  ) => {
-    setIsFullTimeFarmer(newValue);
-  };
-
-  const handleFarmOwnershipChange = (
-    event: React.MouseEvent<HTMLElement>,
-    newValue: string | null
-  ) => {
-    setFarmOwnership(newValue);
-  };
+  const location = useLocation();
+  const [isFullTimeFarmer, setIsFullTimeFarmer] = useState<string | null>(null);
+  // Retrieve selected items from the previous page
+  const selectedItems = location.state?.selectedItems || {};
+  const selectedColumn = Object.keys(selectedItems).find(
+    (key) => selectedItems[key]?.length
+  );
+  // Find the corresponding section to fetch its items
+  const selectedSection = sections.find(
+    (section) => section.title === selectedColumn
+  );
 
   const handleNextClick = () => {
-    navigate("/summary");
+    navigate("/summary", { state: { selectedItems } });
   };
 
   return (
@@ -71,6 +61,7 @@ const ApplicationPage = () => {
             </Typography>
           </Box>
 
+          {/* Stepper */}
           <Box
             sx={{
               display: "flex",
@@ -88,24 +79,30 @@ const ApplicationPage = () => {
                   alignItems: "center",
                   padding: 1,
                   borderBottom:
-                    step.status === "In Progress"
+                    step.label === "1. Credit Check" ||
+                    selectedItems[step.label]?.length
                       ? "2px solid #4CAF50"
                       : "none",
                   backgroundColor:
-                    step.status === "In Progress" ? "#F9F9F9" : "transparent",
+                    step.label === "1. Credit Check" ||
+                    selectedItems[step.label]?.length
+                      ? "#F9F9F9"
+                      : "transparent",
                   minWidth: "140px",
                 }}
               >
                 <Typography
                   sx={{
                     color:
-                      step.status === "In Progress"
+                      step.label === "1. Credit Check" ||
+                      selectedItems[step.label]?.length
                         ? "#4CAF50"
-                        : step.status === "Complete"
-                        ? "#123133"
                         : "#9E9E9E",
                     fontWeight:
-                      step.status === "In Progress" ? "bold" : "normal",
+                      step.label === "1. Credit Check" ||
+                      selectedItems[step.label]?.length
+                        ? "bold"
+                        : "normal",
                     fontSize: "0.9rem",
                   }}
                 >
@@ -115,14 +112,16 @@ const ApplicationPage = () => {
                   sx={{
                     fontSize: "0.8rem",
                     color:
-                      step.status === "In Progress"
+                      step.label === "1. Credit Check" ||
+                      selectedItems[step.label]?.length
                         ? "#4CAF50"
-                        : step.status === "Complete"
-                        ? "#5F6F79"
                         : "#9E9E9E",
                   }}
                 >
-                  {step.status}
+                  {step.label === "1. Credit Check" ||
+                  selectedItems[step.label]?.length
+                    ? "Complete"
+                    : "Incomplete"}
                 </Typography>
               </Box>
             ))}
@@ -130,7 +129,7 @@ const ApplicationPage = () => {
         </Box>
 
         <Box sx={{ display: "flex", height: "calc(100vh - 70px)" }}>
-          {/* Left Sidebar */}
+          {/* Left Sidebar:Farm Profile */}
           <Box
             sx={{
               width: "20%",
@@ -144,191 +143,66 @@ const ApplicationPage = () => {
               fontWeight="bold"
               sx={{ marginBottom: 2, color: "#123133" }}
             >
-              3. Farm Profile
+              {selectedColumn || "Farm Profile"}
             </Typography>
             <Typography
               variant="subtitle2"
               sx={{ color: "#5F6F79", marginBottom: 3 }}
             >
-              Give us some basic farm details
+              Checklist for the selected section
             </Typography>
-
-            {summaryStepsData.map((step, index) => (
+            {/* Profile Checklist */}
+            {selectedSection?.items.map((item, index) => (
               <Box
                 key={index}
                 sx={{
                   display: "flex",
                   alignItems: "center",
                   marginBottom: 2,
-                  color: step.status === "Complete" ? "#4CAF50" : "#B0BEC5",
+                  color:
+                    selectedColumn &&
+                    selectedItems[selectedColumn]?.includes(item)
+                      ? "#4CAF50"
+                      : "#B0BEC5",
                 }}
               >
                 <CheckCircleIcon
                   sx={{
-                    color: step.status === "Complete" ? "#4CAF50" : "#B0BEC5",
                     marginRight: 1,
+                    fontSize: 20,
+                    color:
+                      selectedColumn &&
+                      selectedItems[selectedColumn]?.includes(item)
+                        ? "#4CAF50"
+                        : "#B0BEC5",
                   }}
                 />
-                <Typography>{step.label}</Typography>
+                <Typography
+                  sx={{
+                    fontWeight:
+                      selectedColumn &&
+                      selectedItems[selectedColumn]?.includes(item)
+                        ? "bold"
+                        : "normal",
+                    color:
+                      selectedColumn &&
+                      selectedItems[selectedColumn]?.includes(item)
+                        ? "#123133"
+                        : "#9E9E9E",
+                  }}
+                >
+                  {item}
+                </Typography>
               </Box>
             ))}
           </Box>
 
-          {/* Main Content */}
-          <Box sx={{ flex: 1, padding: 4 }}>
-            <Typography
-              variant="h6"
-              fontWeight="bold"
-              sx={{ color: "#123133", marginBottom: 3 }}
-            >
-              Farm / Company Overview
-            </Typography>
-
-            <Box
-              component="form"
-              sx={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: 3,
-                marginBottom: 4,
-              }}
-            >
-              <TextField label="Farm Name" variant="outlined" fullWidth />
-              <TextField label="Farm Location" variant="outlined" fullWidth />
-            </Box>
-
-            <Typography variant="subtitle1" sx={{ marginBottom: 1 }}>
-              Are you a full-time farmer?
-            </Typography>
-            <ToggleButtonGroup
-              value={isFullTimeFarmer}
-              exclusive
-              onChange={handleFullTimeFarmerChange}
-              sx={{ marginBottom: 4 }}
-            >
-              <ToggleButton
-                value="yes"
-                sx={{
-                  textTransform: "none",
-                  flex: 1,
-                  backgroundColor:
-                    isFullTimeFarmer === "yes" ? "#4CAF50" : "#FFFFFF",
-                  color: isFullTimeFarmer === "yes" ? "#FFFFFF" : "#123133",
-                  border: "1px solid #E0E0E0",
-                  "&:hover": { backgroundColor: "#4CAF50", color: "#FFFFFF" },
-                }}
-              >
-                Yes
-              </ToggleButton>
-              <ToggleButton
-                value="no"
-                sx={{
-                  textTransform: "none",
-                  flex: 1,
-                  backgroundColor:
-                    isFullTimeFarmer === "no" ? "#4CAF50" : "#FFFFFF",
-                  color: isFullTimeFarmer === "no" ? "#FFFFFF" : "#123133",
-                  border: "1px solid #E0E0E0",
-                  "&:hover": { backgroundColor: "#4CAF50", color: "#FFFFFF" },
-                }}
-              >
-                No
-              </ToggleButton>
-            </ToggleButtonGroup>
-
-            <TextField
-              label="Describe your farm background"
-              variant="outlined"
-              multiline
-              rows={4}
-              fullWidth
-              sx={{ marginBottom: 4 }}
-            />
-
-            <Typography variant="subtitle1" sx={{ marginBottom: 1 }}>
-              Is your farm owned or leased?
-            </Typography>
-            <ToggleButtonGroup
-              value={farmOwnership}
-              exclusive
-              onChange={handleFarmOwnershipChange}
-              sx={{ marginBottom: 4 }}
-            >
-              <ToggleButton
-                value="leased"
-                sx={{
-                  textTransform: "none",
-                  flex: 1,
-                  backgroundColor:
-                    farmOwnership === "leased" ? "#4CAF50" : "#FFFFFF",
-                  color: farmOwnership === "leased" ? "#FFFFFF" : "#123133",
-                  border: "1px solid #E0E0E0",
-                  "&:hover": { backgroundColor: "#4CAF50", color: "#FFFFFF" },
-                }}
-              >
-                Leased
-              </ToggleButton>
-              <ToggleButton
-                value="owned"
-                sx={{
-                  textTransform: "none",
-                  flex: 1,
-                  backgroundColor:
-                    farmOwnership === "owned" ? "#4CAF50" : "#FFFFFF",
-                  color: farmOwnership === "owned" ? "#FFFFFF" : "#123133",
-                  border: "1px solid #E0E0E0",
-                  "&:hover": { backgroundColor: "#4CAF50", color: "#FFFFFF" },
-                }}
-              >
-                Owned
-              </ToggleButton>
-              <ToggleButton
-                value="both"
-                sx={{
-                  textTransform: "none",
-                  flex: 1,
-                  backgroundColor:
-                    farmOwnership === "both" ? "#4CAF50" : "#FFFFFF",
-                  color: farmOwnership === "both" ? "#FFFFFF" : "#123133",
-                  border: "1px solid #E0E0E0",
-                  "&:hover": { backgroundColor: "#4CAF50", color: "#FFFFFF" },
-                }}
-              >
-                Both
-              </ToggleButton>
-            </ToggleButtonGroup>
-
-            <Box
-              sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 3 }}
-            >
-              <TextField label="Hectares Leased" variant="outlined" fullWidth />
-              <TextField label="Length of Lease" variant="outlined" fullWidth />
-              <TextField label="Hectares Owned" variant="outlined" fullWidth />
-              <TextField
-                label="Irrigated Hectares"
-                variant="outlined"
-                fullWidth
-              />
-              <TextField
-                label="Dryland Hectares"
-                variant="outlined"
-                fullWidth
-              />
-            </Box>
-
-            <Button
-              variant="contained"
-              sx={{
-                marginTop: 4,
-                textTransform: "none",
-                backgroundColor: "#4CAF50",
-                "&:hover": { backgroundColor: "#388E3C" },
-              }}
-              onClick={handleNextClick}
-            >
-              Next
-            </Button>
-          </Box>
+          {/* Main Content:Form */}
+          <FarmForm
+            isFullTimeFarmer={isFullTimeFarmer}
+            setIsFullTimeFarmer={setIsFullTimeFarmer}
+            handleNextClick={handleNextClick}
+          />
         </Box>
       </Box>
     </GlobalContainer>

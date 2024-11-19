@@ -24,4 +24,14 @@ export type PageTitleInterface = {
 
 export interface ChecklistSectionInterface {
   isSummary?: boolean;
+  selectedItems: Record<string, string[]>;
+  onCheckboxChange: (section: string, item: string) => void;
+}
+
+export interface ChecklistItemInterface {
+  item: string;
+  isLastItem: boolean;
+  isSummary?: ChecklistSectionInterface;
+  isChecked: boolean;
+  onChange?: () => void;
 }

@@ -1,10 +1,15 @@
+import React from "react";
 import { Box, Typography } from "@mui/material";
 import { sections } from "../api/checklistSectionData";
 import ChecklistItem from "./ChecklistItem";
-import SummaryDetails from "./SummaryDetails"; // Import the new summary component
+import SummaryDetails from "./SummaryDetails";
 import { ChecklistSectionInterface } from "../types/types";
 
-const ChecklistSection = ({ isSummary }: ChecklistSectionInterface) => {
+const ChecklistSection: React.FC<ChecklistSectionInterface> = ({
+  isSummary,
+  selectedItems,
+  onCheckboxChange,
+}) => {
   return (
     <Box
       sx={{
@@ -13,7 +18,7 @@ const ChecklistSection = ({ isSummary }: ChecklistSectionInterface) => {
         height: "600px",
         display: "grid",
         gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-        gap: "0",
+        gap: 0,
         position: "relative",
       }}
     >
@@ -58,6 +63,10 @@ const ChecklistSection = ({ isSummary }: ChecklistSectionInterface) => {
                     key={itemIndex}
                     item={item}
                     isLastItem={itemIndex === section.items.length - 1}
+                    isChecked={
+                      selectedItems[section.title]?.includes(item) ?? false
+                    } // Check if the item is selected in the corresponding section
+                    onChange={() => onCheckboxChange(section.title, item)}
                   />
                 ))}
               </Box>

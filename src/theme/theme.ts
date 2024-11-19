@@ -48,7 +48,7 @@ const theme = createTheme({
     body2: {
       fontSize: "14px",
       fontWeight: "light",
-      color: "#3E3E3E",
+   
     },
     button: {
       fontSize: "16px",
