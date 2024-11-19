@@ -42,14 +42,15 @@ const ChecklistSection: React.FC<ChecklistSectionInterface> = ({
               {/* Section Title and Subtitle */}
               <Box sx={{ marginBottom: 2 }}>
                 <Typography
-                  variant="subtitle1"
+                  variant="h3"
                   fontWeight="bold"
                   sx={{ color: "#123133", marginBottom: 1 }}
                 >
                   {section.title}
                 </Typography>
-                <Typography
-                  color="textSecondary"
+                  <Typography
+                    variant="body2"
+                 
                   sx={{ fontSize: "0.9rem", marginBottom: 2 }}
                 >
                   {section.subtitle}

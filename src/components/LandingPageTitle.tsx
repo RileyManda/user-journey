@@ -21,7 +21,7 @@ const LandingPageTitle = ({
     >
       {/* Text Section */}
       <Box>
-        <Typography variant="h2">
+        <Typography variant="h1">
           {title}
         </Typography>
         <Typography
