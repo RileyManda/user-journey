@@ -7,7 +7,6 @@ export const fetchUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const data = await fetchUserData();
-      //   console.log("Fetched User Data:", data);
       return data;
     } catch (error: any) {
       return rejectWithValue(error.message || "Failed to fetch user data");
@@ -22,7 +21,7 @@ interface UserState {
 }
 
 const initialState: UserState = {
-  data: null,
+  data: JSON.parse(localStorage.getItem("userData") || "null"), // Load from localStorage if available
   loading: false,
   error: null,
 };
@@ -38,9 +37,11 @@ const userSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchUser.fulfilled, (state, action) => {
-        console.log("Action Payload:", action.payload); // Debug Redux payload
+        console.log("Action Payload:", action.payload);
         state.loading = false;
         state.data = action.payload;
+        // Save data to localStorage
+        localStorage.setItem("userData", JSON.stringify(action.payload));
       })
       .addCase(fetchUser.rejected, (state, action) => {
         state.loading = false;
