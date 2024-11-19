@@ -27,12 +27,12 @@ const FarmForm = ({
   ) => {
     setIsFullTimeFarmer(value);
   };
-    const handleLeaseChange = (
-      event: React.MouseEvent<HTMLElement>,
-      lease: string | null
-    ) => {
-      setLeaseType(lease);
-    };
+  const handleLeaseChange = (
+    event: React.MouseEvent<HTMLElement>,
+    lease: string | null
+  ) => {
+    setLeaseType(lease);
+  };
 
   return (
     <Box sx={{ flex: 1, padding: 4 }}>
@@ -63,7 +63,7 @@ const FarmForm = ({
         <TextField label="Number of Employees" variant="outlined" fullWidth />
       </Box>
 
-      <Typography variant="subtitle1" sx={{ marginBottom: 2 }}>
+      <Typography variant="subtitle2" sx={{ marginBottom: 2 }}>
         Are you a full-time farmer?
       </Typography>
       <ToggleButtonGroup
@@ -84,6 +84,7 @@ const FarmForm = ({
             border: "1px solid #E0E0E0",
             borderRadius: "8px",
             "&:hover": { backgroundColor: "#3A7D3E", color: "#FFFFFF" },
+            fontWeight: "light",
           }}
         >
           Yes
@@ -100,6 +101,7 @@ const FarmForm = ({
             border: "1px solid #E0E0E0",
             borderRadius: "8px",
             "&:hover": { backgroundColor: "#3A7D3E", color: "#FFFFFF" },
+            fontWeight: "light",
           }}
         >
           No
@@ -114,7 +116,7 @@ const FarmForm = ({
         fullWidth
         sx={{ marginBottom: 4 }}
       />
-      <Typography variant="subtitle1" sx={{ marginBottom: 2 }}>
+      <Typography variant="subtitle2" sx={{ marginBottom: 2 }}>
         Is your farm owned or leased?
       </Typography>
       <ToggleButtonGroup
@@ -135,6 +137,7 @@ const FarmForm = ({
             border: "1px solid #E0E0E0",
             borderRadius: "8px",
             "&:hover": { backgroundColor: "#3A7D3E", color: "#FFFFFF" },
+            fontWeight: "light",
           }}
         >
           Leased
@@ -152,6 +155,7 @@ const FarmForm = ({
             border: "1px solid #E0E0E0",
             borderRadius: "8px",
             "&:hover": { backgroundColor: "#3A7D3E", color: "#FFFFFF" },
+            fontWeight: "light",
           }}
         >
           Owned
@@ -168,26 +172,27 @@ const FarmForm = ({
             border: "1px solid #E0E0E0",
             borderRadius: "8px",
             "&:hover": { backgroundColor: "#3A7D3E", color: "#FFFFFF" },
+            fontWeight: "light",
           }}
         >
           Both
         </Button>
       </ToggleButtonGroup>
-      <Typography variant="subtitle1" sx={{ marginBottom: 2 }}>
+      <Typography variant="subtitle2" sx={{ marginBottom: 2 }}>
         Leasing Information
       </Typography>
       <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 3 }}>
         <TextField label="Hectares Leased" variant="outlined" fullWidth />
         <TextField label="Length of Lease" variant="outlined" fullWidth />
       </Box>
-      <Typography variant="subtitle1" sx={{ marginBottom: 2, marginTop: 4 }}>
+      <Typography variant="subtitle2" sx={{ marginBottom: 2, marginTop: 4 }}>
         Owned land Information
       </Typography>
       <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 3 }}>
         <TextField label="Hectares Owned" variant="outlined" fullWidth />
       </Box>
 
-      <Typography variant="subtitle1" sx={{ marginBottom: 2, marginTop: 4 }}>
+      <Typography variant="subtitle2" sx={{ marginBottom: 2, marginTop: 4 }}>
         Irrigation details
       </Typography>
       <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 3 }}>
@@ -202,6 +207,7 @@ const FarmForm = ({
           textTransform: "none",
           backgroundColor: "#3A7D3E",
           "&:hover": { backgroundColor: "#2E6732" },
+          
         }}
         onClick={handleNextClick}
       >
