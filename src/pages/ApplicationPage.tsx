@@ -6,6 +6,7 @@ import { useNavigate, useLocation } from "react-router";
 import { sections } from "../api/checklistSectionData"; // Import sections
 import { summaryStepsData } from "../api/summarySteps";
 import FarmForm from "../components/FarmForm";
+import Stepper from "../components/Stepper";
 
 const ApplicationPage = () => {
   const navigate = useNavigate();
@@ -62,70 +63,7 @@ const ApplicationPage = () => {
           </Box>
 
           {/* Stepper */}
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              flex: 4,
-              gap: 2,
-            }}
-          >
-            {summaryStepsData.map((step, index) => (
-              <Box
-                key={index}
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  padding: 1,
-                  borderBottom:
-                    step.label === "1. Credit Check" ||
-                    selectedItems[step.label]?.length
-                      ? "2px solid #4CAF50"
-                      : "none",
-                  backgroundColor:
-                    step.label === "1. Credit Check" ||
-                    selectedItems[step.label]?.length
-                      ? "#F9F9F9"
-                      : "transparent",
-                  minWidth: "140px",
-                }}
-              >
-                <Typography
-                  sx={{
-                    color:
-                      step.label === "1. Credit Check" ||
-                      selectedItems[step.label]?.length
-                        ? "#4CAF50"
-                        : "#9E9E9E",
-                    fontWeight:
-                      step.label === "1. Credit Check" ||
-                      selectedItems[step.label]?.length
-                        ? "bold"
-                        : "normal",
-                    fontSize: "0.9rem",
-                  }}
-                >
-                  {step.label}
-                </Typography>
-                <Typography
-                  sx={{
-                    fontSize: "0.8rem",
-                    color:
-                      step.label === "1. Credit Check" ||
-                      selectedItems[step.label]?.length
-                        ? "#4CAF50"
-                        : "#9E9E9E",
-                  }}
-                >
-                  {step.label === "1. Credit Check" ||
-                  selectedItems[step.label]?.length
-                    ? "Complete"
-                    : "Incomplete"}
-                </Typography>
-              </Box>
-            ))}
-          </Box>
+          <Stepper steps={summaryStepsData} selectedItems={selectedItems} />
         </Box>
 
         <Box sx={{ display: "flex", height: "calc(100vh - 70px)" }}>
