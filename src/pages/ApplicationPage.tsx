@@ -28,9 +28,13 @@ const ApplicationPage = () => {
     navigate("/summary", { state: { selectedItems } });
   };
 
+  const handleSaveExit = () => {
+    navigate("/summary", { state: { selectedItems } });
+  };
+
   return (
     <GlobalContainer>
-      <Box sx={{ backgroundColor: "#FFFFFF", height: "100vh", }} >
+      <Box sx={{ backgroundColor: "#FFFFFF", height: "100vh" }}>
         {/* Top Navigation */}
         <Box
           sx={{
@@ -40,7 +44,7 @@ const ApplicationPage = () => {
             borderBottom: "1px solid #E0E0E0",
           }}
         >
-          <Box sx={{ flex: 1 }}>
+          <Box sx={{ flex: 1, display: "flex", alignItems: "center" }}>
             <Button
               variant="text"
               sx={{
@@ -48,20 +52,27 @@ const ApplicationPage = () => {
                 color: "#123133",
                 fontSize: "1rem",
                 fontWeight: "bold",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                padding: 0,
+                "&:hover": {
+                  backgroundColor: "transparent",
+                },
               }}
+              onClick={handleSaveExit}
             >
               <CloseIcon />
+              <Typography
+                sx={{
+                  color: "#123133",
+                  fontSize: "0.9rem",
+                  marginTop: "4px",
+                }}
+              >
+                Save and close
+              </Typography>
             </Button>
-            <Typography
-              sx={{
-                display: "inline",
-                color: "#123133",
-                fontSize: "0.9rem",
-                marginLeft: "8px",
-              }}
-            >
-              Save and close
-            </Typography>
           </Box>
 
           {/* Stepper */}
