@@ -1,7 +1,7 @@
 export const summaryStepsData = [
-  { label: "1. Credit Check", status: "Complete" },
-  { label: "2. KYC", status: "Complete" },
-  { label: "3. Farm Profile", status: "In Progress" },
-  { label: "4. Financial Information", status: "Up Next" },
-  { label: "5. Uploads", status: "Last Step" },
+  { label: "1. Credit Check", description: "Check if you qualify" },
+  { label: "2. KYC", description: "Check if you qualify" },
+  { label: "3. Farm Profile", description: "Check if you qualify" },
+  { label: "4. Financial Information", description: "Check if you qualify" },
+  { label: "5. Uploads", description: "Check if you qualify" },
 ];
