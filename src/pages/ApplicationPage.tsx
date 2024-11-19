@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Typography, Button } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CloseIcon from "@mui/icons-material/Close";
@@ -8,12 +8,16 @@ import { sections } from "../api/checklistSectionData"; // Import sections
 import { summaryStepsData } from "../api/summarySteps";
 import FarmForm from "../components/FarmForm";
 import Stepper from "../components/Stepper";
+import fetchUserData from "../api/fetchUserData";
 
 const ApplicationPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isFullTimeFarmer, setIsFullTimeFarmer] = useState<string | null>(null);
   const [leaseType, setLeaseType] = useState<string | null>(null);
+  const [userData, setUserData] = useState<{ farmName: string } | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   // Retrieve selected items from the previous page
   const selectedItems = location.state?.selectedItems || {};
   const selectedColumn = Object.keys(selectedItems).find(
@@ -32,6 +36,26 @@ const ApplicationPage = () => {
     navigate("/summary", { state: { selectedItems } });
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchUserData();
+        setUserData({ farmName: data?.farmer?.farm?.name || "Unknown Farm" });
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("An unknown error occurred");
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
   return (
     <GlobalContainer>
       <Box sx={{ backgroundColor: "#FFFFFF", height: "100vh" }}>
@@ -189,6 +213,7 @@ const ApplicationPage = () => {
               handleNextClick={handleNextClick}
               setLeaseType={setLeaseType}
               lease={leaseType}
+              farmName={userData?.farmName || ""}
             />
           </Box>
         </Box>

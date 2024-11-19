@@ -9,6 +9,7 @@ import {
 interface FarmFormProps {
   isFullTimeFarmer: string | null;
   lease: string | null;
+  farmName: string;
   setIsFullTimeFarmer: (value: string | null) => void;
   setLeaseType: (lease: string | null) => void;
   handleNextClick: () => void;
@@ -19,6 +20,7 @@ const FarmForm = ({
   setIsFullTimeFarmer,
   setLeaseType,
   lease,
+  farmName,
   handleNextClick,
 }: FarmFormProps) => {
   const handleFullTimeFarmerChange = (
@@ -57,6 +59,7 @@ const FarmForm = ({
             color: "#3e3e3e",
             fontSize: "16px",
           }}
+          value={farmName}
         />
         <TextField label="Farm Location" variant="outlined" fullWidth />
         <TextField label="Farm Size (hectares)" variant="outlined" fullWidth />
