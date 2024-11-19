@@ -207,7 +207,7 @@ const FarmForm = ({
           textTransform: "none",
           backgroundColor: "#3A7D3E",
           "&:hover": { backgroundColor: "#2E6732" },
-          
+          fontWeight: "light",
         }}
         onClick={handleNextClick}
       >
