@@ -66,7 +66,7 @@ const ApplicationPage = () => {
           </Box>
 
           {/* Stepper */}
-          <Stepper steps={summaryStepsData} selectedItems={selectedItems} />
+          <Stepper steps={summaryStepsData} selectedItems={selectedItems} currentStep={selectedColumn || ""} />
         </Box>
 
         <Box sx={{ display: "flex", height: "calc(100vh - 70px)" }}>
