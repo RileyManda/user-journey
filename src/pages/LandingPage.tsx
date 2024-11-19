@@ -1,4 +1,4 @@
-import ChecklistSection from "../components/Checklist";
+import ChecklistSection from "../components/ChecklistSection";
 import LandingPageTitle from "../components/LandingPageTitle";
 import GlobalContainer from "../components/GlobalContainer";
 import { useNavigate } from "react-router";
@@ -18,7 +18,7 @@ const LandingPage = () => {
         buttonText="Start Application"
         onButtonClick={handleStartApplication}
       />
-      <ChecklistSection />
+      <ChecklistSection isSummary={false} />
     </GlobalContainer>
   );
 };

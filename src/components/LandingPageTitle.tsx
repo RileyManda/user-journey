@@ -1,5 +1,5 @@
 import { Box, Typography, Button } from "@mui/material";
-import { LandingPageTitleProps } from "../types/types";
+import { PageTitleInterface } from "../types/types";
 
 
 const LandingPageTitle = ({
@@ -7,7 +7,7 @@ const LandingPageTitle = ({
   subtitle,
   buttonText,
   onButtonClick,
-}: LandingPageTitleProps) => {
+}: PageTitleInterface) => {
   return (
     <Box
       sx={{
