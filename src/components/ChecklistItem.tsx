@@ -41,7 +41,7 @@ const ChecklistItem = ({
               width: 24,
               height: 24,
               borderRadius: "50%",
-              border: "2px solid #4CAF50",
+              border: "2px solid #123133",
             }}
           />
         }
