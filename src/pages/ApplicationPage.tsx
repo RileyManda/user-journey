@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import fetchUserData from "../api/fetchUserData";
-import { UserData } from "../types/types";
+import { UserDataInterface } from "../types/types";
 
 const ApplicationPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [data, setData] = useState<UserData | null>(null);
+  const [data, setData] = useState<UserDataInterface | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
