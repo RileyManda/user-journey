@@ -8,22 +8,26 @@ import { sections } from "../api/checklistSectionData"; // Import sections
 import { summaryStepsData } from "../api/summarySteps";
 import FarmForm from "../components/FarmForm";
 import Stepper from "../components/Stepper";
-import fetchUserData from "../api/fetchUserData";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "../redux/store";
+import { fetchUser } from "../redux/userSlice";
 
 const ApplicationPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isFullTimeFarmer, setIsFullTimeFarmer] = useState<string | null>(null);
   const [leaseType, setLeaseType] = useState<string | null>(null);
-  const [userData, setUserData] = useState<{ farmName: string } | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  // Retrieve selected items from the previous page
+  const dispatch: AppDispatch = useDispatch();
+  const { data: userData, loading, error } = useSelector((state: RootState) => state.user);
+
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, [dispatch]);
+
   const selectedItems = location.state?.selectedItems || {};
   const selectedColumn = Object.keys(selectedItems).find(
     (key) => selectedItems[key]?.length
   );
-  // Find the corresponding section to fetch its items
   const selectedSection = sections.find(
     (section) => section.title === selectedColumn
   );
@@ -36,26 +40,9 @@ const ApplicationPage = () => {
     navigate("/summary", { state: { selectedItems } });
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await fetchUserData();
-        setUserData({ farmName: data?.farmer?.farm?.name || "Unknown Farm" });
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError("An unknown error occurred");
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
+
   return (
     <GlobalContainer>
       <Box sx={{ backgroundColor: "#FFFFFF", height: "100vh" }}>
@@ -154,7 +141,6 @@ const ApplicationPage = () => {
                     display: "flex",
                     alignItems: "center",
                     marginBottom: 2,
-
                     color:
                       selectedColumn &&
                       selectedItems[selectedColumn]?.includes(item)
@@ -168,7 +154,6 @@ const ApplicationPage = () => {
                       fontSize: 20,
                       width: "30px",
                       height: "30px",
-
                       color:
                         selectedColumn &&
                         selectedItems[selectedColumn]?.includes(item)
@@ -213,7 +198,7 @@ const ApplicationPage = () => {
               handleNextClick={handleNextClick}
               setLeaseType={setLeaseType}
               lease={leaseType}
-              farmName={userData?.farmName || ""}
+              farmName={userData?.farmer?.farm?.name || ""}
             />
           </Box>
         </Box>
