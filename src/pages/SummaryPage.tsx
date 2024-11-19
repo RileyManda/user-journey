@@ -11,10 +11,9 @@ const SummaryPage = () => {
   const selectedItems = location.state?.selectedItems || {};
 
   const handleContinue = () => {
-    console.log("Continue button clicked!");
-    // Navigate to the next step or final page
-    // navigate("/final-step");
+    navigate("/application", { state: { selectedItems } });
   };
+
 
   return (
     <GlobalContainer>
