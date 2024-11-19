@@ -1,11 +1,11 @@
 import { createContext, useContext, ReactNode, useState } from "react";
 import fetchUserData from "../api/fetchUserData";
-import { ContextProviderValue, UserData } from "../types/types";
+import { ContextProviderInterface, UserDataInterface } from "../types/types";
 
-const Context = createContext<ContextProviderValue | null>(null);
+const Context = createContext<ContextProviderInterface | null>(null);
 
 export const ContextProvider = ({ children }: { children: ReactNode }) => {
-  const [data, setData] = useState<UserData | null>(null);
+  const [data, setData] = useState<UserDataInterface | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
