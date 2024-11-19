@@ -1,7 +1,7 @@
-import { UserData } from "../types/types";
+import { UserDataInterface } from "../types/types";
 import { GET_USER_DATA } from "./queries";
 
-const fetchUserData = async (): Promise<UserData> => {
+const fetchUserData = async (): Promise<UserDataInterface> => {
   const response = await fetch(import.meta.env.VITE_GRAPHQL_ENDPOINT, {
     method: "POST",
     headers: {
