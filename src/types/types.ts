@@ -1,3 +1,20 @@
+/**
+ * This document defines TypeScript interfaces and types for a user journey application.
+ *
+ * 1. **UserDataInterface**: Represents user data 
+ * including name, surname, and farmer details.
+ * 2. **ContextProviderInterface**: Defines a context 
+ * provider with methods and properties for fetching data, 
+ * storing user data, error messages, and loading state.
+ * 3. **PageTitleInterface**: Represents page title i
+ * nformation with main title, subtitle, button text, and a button click callback.
+ * 4. **ChecklistSectionInterface**: Represents 
+ * a checklist section with summary indication, 
+ * selected items, and a checkbox change callback.
+ * 5. **ChecklistItemInterface**: Represents 
+ * a checklist item with item details, last item 
+ * indication, optional summary section, checked state, and an optional change callback.
+ */
 export interface UserDataInterface {
   name: string;
   surname: string;

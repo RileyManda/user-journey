@@ -1,3 +1,14 @@
+/**
+ * MenuComponent is a functional React component that renders a horizontal menu
+ * with a list of menu items. Each menu item is displayed as a button.
+ *
+ * @component
+ * return (
+ *   <MenuComponent />
+ * )
+ *
+ * @returns {JSX.Element} A Box component containing a list of Buttons representing menu items.
+ */
 import { Box, Button } from "@mui/material";
 
 const MenuComponent = () => {

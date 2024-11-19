@@ -1,3 +1,14 @@
+/**
+ * SummaryPageTitle component renders a title, subtitle, completion status, and a button.
+ *
+ * @param {PageTitleInterface} props - The properties for the component.
+ * @param {string} props.title - The main title text.
+ * @param {string} props.subtitle - The subtitle text.
+ * @param {string} props.buttonText - The text to display on the button.
+ * @param {() => void} props.onButtonClick - The callback function to handle button click events.
+ *
+ * @returns {JSX.Element} The rendered SummaryPageTitle component.
+ */
 import { Box, Typography, Button } from "@mui/material";
 import { PageTitleInterface } from "../types/types";
 

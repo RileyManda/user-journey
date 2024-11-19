@@ -1,3 +1,14 @@
+/**
+ * Component for displaying the title, subtitle, and a button on the landing page.
+ *
+ * @component
+ * @param {PageTitleInterface} props - The properties for the LandingPageTitle component.
+ * @param {string} props.title - The main title text to display.
+ * @param {string} props.subtitle - The subtitle text to display.
+ * @param {string} props.buttonText - The text to display on the button.
+ * @param {() => void} props.onButtonClick - The function to call when the button is clicked.
+ * @returns {JSX.Element} The rendered LandingPageTitle component.
+ */
 import { Box, Typography, Button } from "@mui/material";
 import { PageTitleInterface } from "../types/types";
 

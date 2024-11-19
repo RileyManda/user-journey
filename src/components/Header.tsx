@@ -1,3 +1,25 @@
+/**
+ * Header component that renders the application's top navigation bar.
+ * 
+ * This component uses Material-UI's AppBar and Toolbar components to create a fixed
+ * header with a white background, a bottom border, and a subtle shadow. The header
+ * includes the following sections:
+ * 
+ * - Left Section: Contains the Khula logo, a search bar, and a set of menu items.
+ * - Right Section: Contains an action menu.
+ * 
+ * The left section is further divided into:
+ * - Logo: Displays the Khula logo.
+ * - Search Bar: Renders the SearchComponent.
+ * - Menu Items: A list of clickable menu items ("Home", "Quotes", "Orders", "Support", "Account").
+ * 
+ * The right section renders the ActionMenu component.
+ * 
+ * @component
+ * return (
+ *   <Header />
+ * )
+ */
 import { AppBar, Toolbar, Box, Typography } from "@mui/material";
 import logo from "../assets/khula_logo.png";
 import SearchComponent from "./Search";

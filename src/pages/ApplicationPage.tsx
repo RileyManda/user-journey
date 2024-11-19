@@ -1,10 +1,50 @@
+/**
+ * ApplicationPage component is responsible for rendering the main application page.
+ * It fetches user data, handles navigation, and displays a form for farm details.
+ *
+ * @component
+ * return (
+ *   <ApplicationPage />
+ * )
+ *
+ * @returns {JSX.Element} The rendered component.
+ *
+ * @remarks
+ * This component uses several hooks and components:
+ * - `useNavigate` and `useLocation` from `react-router` for navigation and location state.
+ * - `useEffect` for fetching user data on component mount.
+ * - `useState` for managing local state such as `isFullTimeFarmer` and `leaseType`.
+ * - `useDispatch` and `useSelector` from `react-redux` for dispatching actions and selecting state.
+ *
+ * @requires GlobalContainer
+ * @requires FarmForm
+ * @requires Stepper
+ * @requires fetchUser from `../redux/userSlice`
+ * @requires sections from `../api/checklistSectionData`
+ * @requires summaryStepsData from `../api/summarySteps`
+ *
+ * @param {Object} props - The component props.
+ * @param {Object} props.location - The location object from `react-router`.
+ * @param {Object} props.location.state - The state object passed via navigation.
+ * @param {Object} props.location.state.selectedItems - The selected items from the previous page.
+ *
+ * @state {string | null} isFullTimeFarmer - State to manage if the user is a full-time farmer.
+ * @state {string | null} leaseType - State to manage the type of lease.
+ *
+ * @redux {Object} user - The user state from the Redux store.
+ * @redux {boolean} loading - The loading state for fetching user data.
+ * @redux {string} error - The error state for fetching user data.
+ *
+ * @function handleNextClick - Navigates to the summary page with the selected items.
+ * @function handleSaveExit - Navigates to the summary page with the selected items and saves the current state.
+ */
 import { useEffect, useState } from "react";
 import { Box, Typography, Button } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CloseIcon from "@mui/icons-material/Close";
 import GlobalContainer from "../components/GlobalContainer";
 import { useNavigate, useLocation } from "react-router";
-import { sections } from "../api/checklistSectionData"; // Import sections
+import { sections } from "../api/checklistSectionData";
 import { summaryStepsData } from "../api/summarySteps";
 import FarmForm from "../components/FarmForm";
 import Stepper from "../components/Stepper";
