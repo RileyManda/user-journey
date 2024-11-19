@@ -1,12 +1,12 @@
 import { Box, Checkbox, Typography } from "@mui/material";
+import { ChecklistItemInterface } from "../types/types";
 
-interface ChecklistItemProps {
-  item: string;
-  isLastItem: boolean;
-  isSummary?: boolean;
-}
-
-const ChecklistItem = ({ item, isLastItem }: ChecklistItemProps) => {
+const ChecklistItem = ({
+  item,
+  isLastItem,
+  isChecked,
+  onChange,
+}: ChecklistItemInterface) => {
   return (
     <Box
       sx={{
@@ -33,6 +33,8 @@ const ChecklistItem = ({ item, isLastItem }: ChecklistItemProps) => {
 
       {/* Checkbox */}
       <Checkbox
+        checked={isChecked}
+        onChange={onChange}
         icon={
           <Box
             sx={{
@@ -58,7 +60,6 @@ const ChecklistItem = ({ item, isLastItem }: ChecklistItemProps) => {
           marginRight: 2,
         }}
       />
-
       {/* Item Text */}
       <Typography sx={{ color: "#123133" }}>{item}</Typography>
     </Box>
