@@ -8,13 +8,17 @@ import {
 
 interface FarmFormProps {
   isFullTimeFarmer: string | null;
+  lease: string | null;
   setIsFullTimeFarmer: (value: string | null) => void;
+  setLeaseType: (lease: string | null) => void;
   handleNextClick: () => void;
 }
 
 const FarmForm = ({
   isFullTimeFarmer,
   setIsFullTimeFarmer,
+  setLeaseType,
+  lease,
   handleNextClick,
 }: FarmFormProps) => {
   const handleFullTimeFarmerChange = (
@@ -23,6 +27,12 @@ const FarmForm = ({
   ) => {
     setIsFullTimeFarmer(value);
   };
+    const handleLeaseChange = (
+      event: React.MouseEvent<HTMLElement>,
+      lease: string | null
+    ) => {
+      setLeaseType(lease);
+    };
 
   return (
     <Box sx={{ flex: 1, padding: 4 }}>
@@ -108,21 +118,20 @@ const FarmForm = ({
         Is your farm owned or leased?
       </Typography>
       <ToggleButtonGroup
-        value={isFullTimeFarmer}
+        value={lease}
         exclusive
-        onChange={handleFullTimeFarmerChange}
+        onChange={handleLeaseChange}
         sx={{ marginBottom: 4 }}
       >
         <Button
           value="leased"
-          onClick={() => setIsFullTimeFarmer("leased")}
+          onClick={() => setLeaseType("leased")}
           sx={{
             textTransform: "none",
             flex: 1,
             marginRight: 1,
-            backgroundColor:
-              isFullTimeFarmer === "leased" ? "#3A7D3E" : "#FFFFFF",
-            color: isFullTimeFarmer === "leased" ? "#FFFFFF" : "#123133",
+            backgroundColor: lease === "leased" ? "#3A7D3E" : "#FFFFFF",
+            color: lease === "leased" ? "#FFFFFF" : "#123133",
             border: "1px solid #E0E0E0",
             borderRadius: "8px",
             "&:hover": { backgroundColor: "#3A7D3E", color: "#FFFFFF" },
@@ -132,15 +141,14 @@ const FarmForm = ({
         </Button>
         <Button
           value="owned"
-          onClick={() => setIsFullTimeFarmer("owned")}
+          onClick={() => setLeaseType("owned")}
           sx={{
             textTransform: "none",
             flex: 1,
             marginLeft: 1,
             marginRight: 1,
-            backgroundColor:
-              isFullTimeFarmer === "owned" ? "#3A7D3E" : "#FFFFFF",
-            color: isFullTimeFarmer === "owned" ? "#FFFFFF" : "#123133",
+            backgroundColor: lease === "owned" ? "#3A7D3E" : "#FFFFFF",
+            color: lease === "owned" ? "#FFFFFF" : "#123133",
             border: "1px solid #E0E0E0",
             borderRadius: "8px",
             "&:hover": { backgroundColor: "#3A7D3E", color: "#FFFFFF" },
@@ -150,14 +158,13 @@ const FarmForm = ({
         </Button>
         <Button
           value="both"
-          onClick={() => setIsFullTimeFarmer("both")}
+          onClick={() => setLeaseType("both")}
           sx={{
             textTransform: "none",
             flex: 1,
             marginLeft: 1,
-            backgroundColor:
-              isFullTimeFarmer === "both" ? "#3A7D3E" : "#FFFFFF",
-            color: isFullTimeFarmer === "both" ? "#FFFFFF" : "#123133",
+            backgroundColor: lease === "both" ? "#3A7D3E" : "#FFFFFF",
+            color: lease === "both" ? "#FFFFFF" : "#123133",
             border: "1px solid #E0E0E0",
             borderRadius: "8px",
             "&:hover": { backgroundColor: "#3A7D3E", color: "#FFFFFF" },

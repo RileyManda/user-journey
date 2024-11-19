@@ -12,6 +12,9 @@ const ApplicationPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isFullTimeFarmer, setIsFullTimeFarmer] = useState<string | null>(null);
+   const [leaseType, setLeaseType] = useState<string | null>(
+     null
+   );
   // Retrieve selected items from the previous page
   const selectedItems = location.state?.selectedItems || {};
   const selectedColumn = Object.keys(selectedItems).find(
@@ -140,6 +143,8 @@ const ApplicationPage = () => {
             isFullTimeFarmer={isFullTimeFarmer}
             setIsFullTimeFarmer={setIsFullTimeFarmer}
             handleNextClick={handleNextClick}
+            setLeaseType={setLeaseType}
+            lease={leaseType}
           />
         </Box>
       </Box>
