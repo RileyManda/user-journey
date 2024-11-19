@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Box, Typography, Button } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import CloseIcon from "@mui/icons-material/Close";
 import GlobalContainer from "../components/GlobalContainer";
 import { useNavigate, useLocation } from "react-router";
 import { sections } from "../api/checklistSectionData"; // Import sections
@@ -12,9 +13,7 @@ const ApplicationPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isFullTimeFarmer, setIsFullTimeFarmer] = useState<string | null>(null);
-   const [leaseType, setLeaseType] = useState<string | null>(
-     null
-   );
+  const [leaseType, setLeaseType] = useState<string | null>(null);
   // Retrieve selected items from the previous page
   const selectedItems = location.state?.selectedItems || {};
   const selectedColumn = Object.keys(selectedItems).find(
@@ -31,7 +30,7 @@ const ApplicationPage = () => {
 
   return (
     <GlobalContainer>
-      <Box sx={{ backgroundColor: "#FFFFFF", height: "100vh" }}>
+      <Box sx={{ backgroundColor: "#FFFFFF", height: "100vh", }} >
         {/* Top Navigation */}
         <Box
           sx={{
@@ -51,7 +50,7 @@ const ApplicationPage = () => {
                 fontWeight: "bold",
               }}
             >
-              X
+              <CloseIcon />
             </Button>
             <Typography
               sx={{
@@ -66,10 +65,14 @@ const ApplicationPage = () => {
           </Box>
 
           {/* Stepper */}
-          <Stepper steps={summaryStepsData} selectedItems={selectedItems} currentStep={selectedColumn || ""} />
+          <Stepper
+            steps={summaryStepsData}
+            selectedItems={selectedItems}
+            currentStep={selectedColumn || ""}
+          />
         </Box>
 
-        <Box sx={{ display: "flex", height: "calc(100vh - 70px)" }}>
+        <Box sx={{ display: "flex", height: "100%" }}>
           {/* Left Sidebar:Farm Profile */}
           <Box
             sx={{
@@ -77,6 +80,8 @@ const ApplicationPage = () => {
               backgroundColor: "#F9F9F9",
               padding: 3,
               borderRight: "1px solid #E0E0E0",
+              position: "relative",
+              height: "100%",
             }}
           >
             <Typography
@@ -93,59 +98,88 @@ const ApplicationPage = () => {
               Checklist for the selected section
             </Typography>
             {/* Profile Checklist */}
-            {selectedSection?.items.map((item, index) => (
-              <Box
-                key={index}
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginBottom: 2,
-                  color:
-                    selectedColumn &&
-                    selectedItems[selectedColumn]?.includes(item)
-                      ? "#4CAF50"
-                      : "#B0BEC5",
-                }}
-              >
-                <CheckCircleIcon
+            <Box
+              sx={{
+                position: "relative",
+                "&::before": {
+                  content: '""',
+                  position: "absolute",
+                  top: "25px",
+                  bottom: "30px",
+                  left: "14px",
+                  width: "2px",
+                  backgroundColor: "#E0E0E0",
+                },
+              }}
+            >
+              {selectedSection?.items.map((item, index) => (
+                <Box
+                  key={index}
                   sx={{
-                    marginRight: 1,
-                    fontSize: 20,
+                    display: "flex",
+                    alignItems: "center",
+                    marginBottom: 2,
+
                     color:
                       selectedColumn &&
                       selectedItems[selectedColumn]?.includes(item)
                         ? "#4CAF50"
                         : "#B0BEC5",
                   }}
-                />
-                <Typography
-                  sx={{
-                    fontWeight:
-                      selectedColumn &&
-                      selectedItems[selectedColumn]?.includes(item)
-                        ? "bold"
-                        : "normal",
-                    color:
-                      selectedColumn &&
-                      selectedItems[selectedColumn]?.includes(item)
-                        ? "#123133"
-                        : "#9E9E9E",
-                  }}
                 >
-                  {item}
-                </Typography>
-              </Box>
-            ))}
+                  <CheckCircleIcon
+                    sx={{
+                      marginRight: 1,
+                      fontSize: 20,
+                      width: "30px",
+                      height: "30px",
+
+                      color:
+                        selectedColumn &&
+                        selectedItems[selectedColumn]?.includes(item)
+                          ? "#4CAF50"
+                          : "#B0BEC5",
+                    }}
+                  />
+                  <Typography
+                    sx={{
+                      fontWeight:
+                        selectedColumn &&
+                        selectedItems[selectedColumn]?.includes(item)
+                          ? "bold"
+                          : "normal",
+                      color:
+                        selectedColumn &&
+                        selectedItems[selectedColumn]?.includes(item)
+                          ? "#123133"
+                          : "#9E9E9E",
+                    }}
+                  >
+                    {item}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
           </Box>
 
           {/* Main Content:Form */}
-          <FarmForm
-            isFullTimeFarmer={isFullTimeFarmer}
-            setIsFullTimeFarmer={setIsFullTimeFarmer}
-            handleNextClick={handleNextClick}
-            setLeaseType={setLeaseType}
-            lease={leaseType}
-          />
+          <Box
+            sx={{
+              width: "80%",
+              padding: 3,
+              height: "100%",
+              overflowY: "auto",
+              overflowX: "hidden",
+            }}
+          >
+            <FarmForm
+              isFullTimeFarmer={isFullTimeFarmer}
+              setIsFullTimeFarmer={setIsFullTimeFarmer}
+              handleNextClick={handleNextClick}
+              setLeaseType={setLeaseType}
+              lease={leaseType}
+            />
+          </Box>
         </Box>
       </Box>
     </GlobalContainer>
