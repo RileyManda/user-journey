@@ -13,7 +13,7 @@ const theme = createTheme({
       main: "#C42727",
     },
     text: {
-      primary: "#3E3E3E",
+      primary: "#3e3e3e",
       secondary: "#707070",
     },
     background: {
@@ -28,22 +28,27 @@ const theme = createTheme({
     h1: {
       fontSize: "24px",
       fontWeight: "bold",
-      color: "#3E3E3E",
+      color: "#3e3e3e",
     },
     h2: {
       fontSize: "24px",
       fontWeight: "regular",
-      color: "#000",
+      color: "#3e3e3e",
     },
     h3: {
       fontSize: "16px",
       fontWeight: "bold",
-      color: "#3E3E3E",
+      color: "#3e3e3e",
     },
     h4: {
       fontSize: "16px",
       fontWeight: "bold",
-      color: "#000",
+      color: "#3e3e3e",
+    },
+    h6: {
+      fontSize: "16px",
+      fontWeight: "bold",
+      color: "#3e3e3e",
     },
     body1: {
       fontSize: "16px",
@@ -53,6 +58,7 @@ const theme = createTheme({
     body2: {
       fontSize: "14px",
       fontWeight: "light",
+      color: "#3e3e3e",
     },
     button: {
       fontSize: "16px",
@@ -63,7 +69,7 @@ const theme = createTheme({
       fontSize: "16px",
       fontWeight: "light",
       textTransform: "none",
-      color: "#3E3E3E",
+      color: "#3e3e3e",
     },
   },
   shape: { borderRadius: 8 },
@@ -82,6 +88,46 @@ const theme = createTheme({
           padding: "16px",
           borderRadius: "8px",
           backgroundColor: "#FFFFFF",
+        },
+      },
+    },
+    MuiTextField: {
+      defaultProps: {
+        variant: "outlined",
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: "#3e3e3e",
+          fontSize: "16px",
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          "& fieldset": {
+            borderColor: "#3A7D3E", // Border color
+          },
+          "&:hover fieldset": {
+            borderColor: "#3A7D3E", // Hover border color
+          },
+          "&.Mui-focused fieldset": {
+            borderColor: "#3A7D3E", // Focus border color
+          },
+        },
+        input: {
+          color: "#3e3e3e", // Text color
+          fontSize: "16px",
+        },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          fontSize: "16px",
+          color: "#3e3e3e",
         },
       },
     },
