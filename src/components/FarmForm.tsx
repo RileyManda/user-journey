@@ -28,11 +28,7 @@ const FarmForm = ({
   return (
     <Box sx={{ flex: 1, padding: 4 }}>
       {/* Form Fields */}
-      <Typography
-        variant="h6"
-        fontWeight="bold"
-        sx={{ color: "#123133", marginBottom: 3 }}
-      >
+      <Typography variant="h2" fontWeight="bold" sx={{ marginBottom: 3 }}>
         Farm / Company Overview
       </Typography>
       <Box
@@ -44,7 +40,15 @@ const FarmForm = ({
           marginBottom: 4,
         }}
       >
-        <TextField label="Farm Name" variant="outlined" fullWidth />
+        <TextField
+          label="Farm Name"
+          variant="outlined"
+          fullWidth
+          style={{
+            color: "#3e3e3e",
+            fontSize: "16px",
+          }}
+        />
         <TextField label="Farm Location" variant="outlined" fullWidth />
         <TextField label="Farm Size (hectares)" variant="outlined" fullWidth />
         <TextField label="Number of Employees" variant="outlined" fullWidth />
@@ -151,7 +155,7 @@ const FarmForm = ({
         <TextField label="Hectares Leased" variant="outlined" fullWidth />
         <TextField label="Length of Lease" variant="outlined" fullWidth />
       </Box>
-      <Typography variant="subtitle2" sx={{ marginBottom: 2, marginTop: 4 }}>
+      <Typography variant="subtitle1" sx={{ marginBottom: 2, marginTop: 4 }}>
         Owned land Information
       </Typography>
       <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 3 }}>
