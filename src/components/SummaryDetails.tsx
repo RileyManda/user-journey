@@ -1,3 +1,17 @@
+/**
+ * SummaryDetails component displays a summary of user details including status, score, risk status, and issues list.
+ *
+ * @component
+ * return (
+ *   <SummaryDetails />
+ * )
+ *
+ * @returns {JSX.Element} A component that renders the summary details.
+ *
+ * @remarks
+ * This component uses Material-UI for styling and layout.
+ *
+ */
 import { Box, Typography } from "@mui/material";
 
 const SummaryDetails = () => {

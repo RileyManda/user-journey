@@ -1,3 +1,26 @@
+/**
+ * Stepper component to display a multi-step process with status indicators.
+ *
+ * @component
+ * @param {Object} props - The properties object.
+ * @param {Array} props.steps - An array of step objects containing label and description.
+ * @param {Object} props.selectedItems - An object where keys are step labels and values are arrays of selected items.
+ * @param {string} props.currentStep - The label of the current step.
+ *
+ * @usage
+ * const steps = [
+ *   { label: "Step 1", description: "Description for step 1" },
+ *   { label: "Step 2", description: "Description for step 2" },
+ *   // more steps...
+ * ];
+ * const selectedItems = {
+ *   "Step 1": ["item1", "item2"],
+ *   // more selected items...
+ * };
+ * const currentStep = "Step 1";
+ *
+ * <Stepper steps={steps} selectedItems={selectedItems} currentStep={currentStep} />
+ */
 import { Box, Typography } from "@mui/material";
 
 interface StepperProps {

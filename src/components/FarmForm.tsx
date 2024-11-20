@@ -24,13 +24,13 @@ const FarmForm = ({
   handleNextClick,
 }: FarmFormProps) => {
   const handleFullTimeFarmerChange = (
-    event: React.MouseEvent<HTMLElement>,
+    _event: React.MouseEvent<HTMLElement>,
     value: string | null
   ) => {
     setIsFullTimeFarmer(value);
   };
   const handleLeaseChange = (
-    event: React.MouseEvent<HTMLElement>,
+    _event: React.MouseEvent<HTMLElement>,
     lease: string | null
   ) => {
     setLeaseType(lease);

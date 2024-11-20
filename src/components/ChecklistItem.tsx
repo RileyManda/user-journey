@@ -1,3 +1,15 @@
+/**
+ * ChecklistItem component renders a checklist item with a checkbox and text.
+ * It also optionally renders a connecting line if the item is not the last one.
+ *
+ * @param {ChecklistItemInterface} props - The props for the ChecklistItem component.
+ * @param {string} props.item - The text of the checklist item.
+ * @param {boolean} props.isLastItem - Flag indicating if this is the last item in the checklist.
+ * @param {boolean} props.isChecked - Flag indicating if the checkbox is checked.
+ * @param {function} props.onChange - Callback function to handle checkbox state change.
+ *
+ * @returns {JSX.Element} The rendered ChecklistItem component.
+ */
 import { Box, Checkbox, Typography } from "@mui/material";
 import { ChecklistItemInterface } from "../types/types";
 

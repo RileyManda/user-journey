@@ -1,3 +1,14 @@
+/**
+ * ChecklistSection component renders a sectioned checklist with optional summary details.
+ *
+ * @component
+ * @param {ChecklistSectionInterface} props - The props for the ChecklistSection component.
+ * @param {boolean} props.isSummary - Flag to determine if the summary details should be displayed.
+ * @param {Record<string, string[]>} props.selectedItems - An object containing selected items for each section.
+ * @param {(sectionTitle: string, item: string) => void} props.onCheckboxChange - Callback function to handle checkbox state changes.
+ *
+ * @returns {JSX.Element} The rendered ChecklistSection component.
+ */
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import { sections } from "../api/checklistSectionData";

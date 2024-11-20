@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material/styles";
-
+// Custom theme component utilizing mui createTheme function
 const theme = createTheme({
   palette: {
     primary: {

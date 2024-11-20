@@ -1,3 +1,31 @@
+/**
+ * ContextProvider component that provides context to its children.
+ * 
+ * @param {Object} props - The props object.
+ * @param {ReactNode} props.children - The child components that will consume the context.
+ * 
+ * @returns {JSX.Element} The provider component that wraps its children with the context.
+ * 
+ * @usage
+ * ```tsx
+ * <ContextProvider>
+ *   <Component />
+ * </ContextProvider>
+ * ```
+ */
+ 
+/**
+ * Custom hook to use the context provided by ContextProvider.
+ * 
+ * @throws {Error} If the hook is used outside of a ContextProvider.
+ * 
+ * @returns {ContextProviderInterface} The context value which includes fetchData, data, error, and loading.
+ * 
+ * @usage
+ * ```tsx
+ * const { fetchData, data, error, loading } = useContextProvider();
+ * ```
+ */
 import { createContext, useContext, ReactNode, useState } from "react";
 import fetchUserData from "../api/fetchUserData";
 import { ContextProviderInterface, UserDataInterface } from "../types/types";
