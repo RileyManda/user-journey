@@ -1,13 +1,16 @@
-# User Journey Application
+# User Journey Application  <img src="./src/assets/app-logo.png" alt="App Logo" width="60" height="60"/>
 
 This project is a React-based web application designed to simulate a user journey through a basic application process. The application showcases skills in making API calls, managing state with Redux or local storage, and implementing specific design requirements.
+
+
+
 
 ## Table of Contents
 - [Objective](#objective)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Installation](#installation)
-- [ProjectSetup](#project-setup)
+- [ProjectSetup](#projectsetup)
 - [Usage](#usage)
   - [Landing Page](#landing-page)
   - [Application Page](#application-page)
@@ -32,11 +35,9 @@ The objective of this application is to create a simple user journey that includ
 - **Save & Exit Button**: Allows users to save their progress and view a summary.
 - **Summary Page**: Displays a summary of the user’s application data and offers an option to continue the application.
 
-## Tech Stack
 
-# ProjectSetup
+## ProjectSetup
 
-## project-setup
 
 To get started with the project, clone this repository and install the necessary dependencies.
 
@@ -117,8 +118,6 @@ The project is built using the following technologies and libraries:
 This project is licensed under the **[MIT License](./LICENSE)**.
 
 ---
-
-#### MIT License
 
 
 
